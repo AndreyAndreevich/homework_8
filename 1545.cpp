@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-
+#include <iterator>
 
 int main() {
     std::vector<std::string> slovar;
@@ -16,11 +16,8 @@ int main() {
     
     std::cin >> line;
     std::vector<std::string> result;
-    std::copy_if(slovar.cbegin(),slovar.cend(),std::back_inserter(result),[line](auto element) {
+    std::copy_if(slovar.cbegin(),slovar.cend(),std::back_inserter(result),[line](const auto& element) {
         return element[0] == line[0];
     });
-    std::sort(result.begin(),result.end());
-    for(const auto& v : result) {
-        std::cout << v << '\n';
-    }
+    std::copy(result.begin(),result.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
 }

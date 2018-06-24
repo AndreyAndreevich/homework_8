@@ -2,7 +2,7 @@
 #include <vector>
 #include <set>
 #include <algorithm>
-
+#include <iterator>
 
 int main() {
     std::vector<std::string> slovar;
@@ -25,7 +25,5 @@ int main() {
             iter++;  
         } 
     }
-    for(const auto& v : result) {
-        std::cout << v << '\n';
-    }
+    std::copy(result.begin(),result.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
 }
